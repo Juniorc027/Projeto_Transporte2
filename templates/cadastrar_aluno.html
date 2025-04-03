@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Página para cadastrar alunos no sistema de transporte escolar.">
+  <title>Cadastrar Aluno</title>
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #649ea7;
+      color: #061013;
+    }
+    .container {
+      max-width: 800px;
+    }
+    .header {
+      text-align: center;
+      background-color: #649ea7;
+      color: #061013;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .btn {
+      background-color: #061013 !important;
+      border-color: #061013 !important;
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Transporte Escolar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/relatorio">Relatório</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>Cadastrar Aluno</h1>
+  </header>
+
+  <!-- Formulário -->
+  <div class="container mt-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert alert-danger">
+          {% for category, message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do aluno" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="idade" class="form-label">Idade:</label>
+            <input type="number" class="form-control" id="idade" name="idade" placeholder="Digite a idade do aluno" required>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="serie" class="form-label">Série:</label>
+        <input type="text" class="form-control" id="serie" name="serie" placeholder="Digite a série do aluno" required>
+      </div>
+      <div class="mb-3">
+        <label for="responsavel_id" class="form-label">Responsável:</label>
+        <select class="form-control" id="responsavel_id" name="responsavel_id" required>
+          {% for r in responsaveis %}
+            <option value="{{ r[0] }}">{{ r[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="escola_id" class="form-label">Escola:</label>
+        <select class="form-control" id="escola_id" name="escola_id" required>
+          {% for escola in escolas %}
+            <option value="{{ escola[0] }}">{{ escola[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+      <a href="/" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar
+      </a>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
