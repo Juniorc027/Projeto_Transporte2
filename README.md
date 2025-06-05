@@ -52,6 +52,7 @@ pip install mysql-connector-python matplotlib plotly
 👨‍💻 Desenvolvedores
 Amilton Junior
 📧 amiltonjuniorcosta25@gmail.com
-🔗 GitHub
+🔗 GitHub: https://github.com/Juniorc027
 
 Magno Leopoldo
+🔗 Github: https://github.com/Magno-Leopoldo
